@@ -197,6 +197,7 @@ a {
   .container .toggle.close span:nth-child(1) {
     position: absolute;
     rotate: 45deg;
+        transition-delay: .4s;
   }
   .container .toggle.close span:nth-child(2) {
     scale: 0;
