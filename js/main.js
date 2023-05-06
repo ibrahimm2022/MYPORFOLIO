@@ -1,6 +1,7 @@
 let links = document.querySelectorAll(".link"),
   toggle = document.querySelector(".toggle"),
   menu = document.querySelector(".links"),
+  more = document.querySelector(".read-more"),
   currentSlide;
 
 links.forEach((link) => {
@@ -21,12 +22,18 @@ toggle.onclick = function () {
 
 // Slider
 
+more.onclick = () => {
+  currentSlide = 1;
+  slider(currentSlide);
+};
+
 let sliderContainer = document.querySelector(".slider-container"),
   item = document.querySelectorAll(".slide"),
   size = sliderContainer.firstElementChild.offsetWidth;
 
 window.onresize = () => {
   size = sliderContainer.firstElementChild.offsetWidth;
+  slider(currentSlide);
 };
 
 function slider(value) {
