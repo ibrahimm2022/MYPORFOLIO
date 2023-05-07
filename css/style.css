@@ -240,11 +240,29 @@ p {
 .slider .slide {
   height: 500px;
   min-width: 100%;
-  overflow-y: auto;
-  background-color: rgba(0, 0, 0, 0.3);
+  overflow: hidden auto;
+
+  background-color: rgba(0, 0, 0, 0.7);
   display: grid;
   place-items: center;
   padding: 30px;
+  position: relative;
+}
+.slider .slide::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: url(../img/Asset841.svg) center no-repeat;
+  background-size: contain;
+  right: 15px;
+  bottom: 15px;
+  z-index: -1;
+}
+.slider .slide:last-child::after {
+  right: auto;
+  transform: rotate(180deg);
+  left: 15px;
 }
 .slider .slide::-webkit-scrollbar {
   width: 5px;
@@ -293,7 +311,6 @@ p {
   align-items: center;
   gap: 25px;
   width: 75%;
-  height: 500px;
   padding: 30px 0;
 }
 .slider .home .img {
@@ -322,6 +339,7 @@ p {
   display: flex;
   justify-content: flex-start;
   gap: 25px;
+  margin-top: 10px;
 }
 .slider .home .text a {
   background: none;
@@ -368,8 +386,10 @@ p {
     align-items: center;
   }
   .slider .home .img {
-    height: 170px;
-    min-width: 170px;
+    height: 175px;
+    min-height: 175px;
+    width: 175px;
+    min-width: 175px;
     border-radius: 100%;
   }
   .slider .home h2 {
@@ -399,6 +419,7 @@ p {
   display: flex;
   width: 100%;
   height: 100%;
+  position: relative;
 }
 .slider .about .text {
   padding: 20px;
@@ -463,21 +484,35 @@ p {
   right: 0;
 }
 .slider .about .img {
-  flex-basis: 40%;
-  height: 100%;
-  background: url(../img/SEOanalyticsteam-bro.svg) no-repeat;
-  background-size: contain;
-  background-position: center;
+  position: absolute;
+  right: 0;
+  height: 500px;
+  z-index: -1;
+  text-align: end;
 }
-@media (max-width: 991px) {
-  .slider .about .content {
+.slider .about img {
+  height: 100%;
+}
+@media (max-width: 767px) {
+  .about .main-title {
+    margin: 0 auto 20px;
+  }
+  .slider .about .text {
+    text-align: center;
+  }
+  .slider .about .skills {
     flex-direction: column;
   }
-  .slider .about .img {
-    height: 230px;
-    background-size: contain;
-    width: 100%;
-    flex-basis: auto;
+
+  .slider .about .skills > div {
+    width: 100% !important;
+    text-align: start;
+  }
+  .slider .about .skills::before {
+    display: none;
+  }
+  .slider .about .skills .progress::after {
+    left: var(--prog);
   }
 }
 /* End About */
@@ -537,18 +572,144 @@ p {
 }
 /* End Work */
 
-.slide .test {
-  color: #fff;
-  font-size: 2em;
+/* Start Contact */
+
+.slider .contact .content {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
-.slide .svg {
-  background: url(../img/asset841.svg) no-repeat;
+.slider .contact .img {
+  background: url(../img/Contact.svg) center no-repeat;
   background-size: contain;
-  width: 100px;
-  height: 100px;
-  color: #fff;
-  font-size: 2em;
+  width: 50%;
+  height: 100%;
 }
-svg {
+.slider .contact .form {
+  width: 50%;
   color: #fff;
 }
+.slider .contact .form > div {
+  position: relative;
+  height: 40px;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+}
+.slider .contact input {
+  background: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  padding: 0 10px;
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  transition: all 0.5s ease;
+}
+.slider .contact input:focus,
+.slider .contact input:valid {
+  border: 1px solid #fff;
+}
+.slider .contact label {
+  position: absolute;
+  left: 0;
+  transform: translate(10px, 10px);
+  font-size: 14px;
+  text-transform: capitalize;
+  transition: 0.5s ease;
+  pointer-events: none;
+}
+.slider .contact input:focus + label,
+.slider .contact input:valid + label,
+.slider .contact textarea:focus + label,
+.slider .contact textarea:valid + label {
+  transform: translate(0, -10px);
+  padding: 2px 10px;
+  border-right: 1px solid #fff;
+  color: #fff;
+  border-left: 1px solid #fff;
+  background: #000;
+  left: 60%;
+}
+.slider .contact .textarea {
+  height: auto !important;
+}
+.slider .contact textarea {
+  width: 100%;
+  max-width: 100%;
+  height: 200px;
+  outline: none;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  transition: border 0.5s ease;
+  color: #fff;
+  padding: 10px;
+}
+
+.slider .contact textarea:focus,
+.slider .contact textarea:valid {
+  border-color: #fff;
+}
+.slider .contact input[type="submit"] {
+  width: auto;
+  height: auto;
+  padding: 10px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+.slider .contact p {
+  display: inline-block;
+  margin-left: 10px;
+}
+.slider .contact p a {
+  color: #5e72ff;
+  padding-bottom: 5px;
+  position: relative;
+}
+.slider .contact p a::after {
+  content: "";
+  background: #5e72ff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: scale(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+}
+.slider .contact p a:hover::after {
+  transform: scale(1);
+  transform-origin: left;
+}
+@media (max-width: 991px) {
+  .slider .contact .content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .slider .contact .img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  .slider .contact .form {
+    width: 100%;
+  }
+  .slider .contact input:focus + label,
+  .slider .contact input:valid + label,
+  .slider .contact textarea:focus + label,
+  .slider .contact textarea:valid + label {
+    left: 70%;
+  }
+}
+@media (max-width: 500px) {
+  .slider .contact input:focus + label,
+  .slider .contact input:valid + label,
+  .slider .contact textarea:focus + label,
+  .slider .contact textarea:valid + label {
+    left: 57%;
+  }
+}
+/* End Contact */
