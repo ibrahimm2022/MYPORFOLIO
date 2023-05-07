@@ -6,9 +6,7 @@ let links = document.querySelectorAll(".link"),
 
 links.forEach((link) => {
   link.onclick = function (e) {
-    links.forEach((link) => {
-      link.classList.remove("active");
-    });
+    check();
     this.classList.add("active");
     currentSlide = parseInt(this.dataset.index);
     slider(currentSlide);
@@ -23,6 +21,8 @@ toggle.onclick = function () {
 // Slider
 
 more.onclick = () => {
+  check();
+  links[1].classList.add("active");
   currentSlide = 1;
   slider(currentSlide);
 };
@@ -38,4 +38,9 @@ window.onresize = () => {
 
 function slider(value) {
   sliderContainer.style.transform = `translatex(-${value * size}px)`;
+}
+function check() {
+  links.forEach((link) => {
+    link.classList.remove("active");
+  });
 }
