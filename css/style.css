@@ -1,6 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 /* Start Gloabel Rules */
+::-webkit-scrollbar {
+  width: 5px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(250, 250, 250, 0.5);
+}
 :root {
   --border-link: #fff;
 }
@@ -30,6 +39,47 @@ p {
   letter-spacing: 3px;
 }
 /* End Gloabel Rules */
+
+/* Start Social */
+.social {
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px 0;
+}
+
+.social a {
+  color: #fff;
+  width: 16px;
+}
+.social span {
+  color: #f2f2f2;
+}
+.social .mobile {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  text-transform: capitalize;
+}
+.social .web {
+  display: flex;
+  gap: 5px;
+}
+.social .web img {
+}
+@media (max-width: 667px) {
+  .social {
+    flex-direction: column;
+    gap: 13px;
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+  }
+  .social .mobile {
+    text-align: center;
+  }
+}
+/* End Social */
 
 /* Start Navigation Bar */
 .container {
@@ -195,7 +245,7 @@ p {
     font-size: 3em;
     cursor: pointer;
     position: relative;
-    z-index: 100000;
+    z-index: 4;
   }
   .container .toggle span {
     display: block;
@@ -264,15 +314,7 @@ p {
   transform: rotate(180deg);
   left: 15px;
 }
-.slider .slide::-webkit-scrollbar {
-  width: 5px;
-  background: rgba(0, 0, 0, 0.5);
-}
 
-.slider .slide::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: rgba(250, 250, 250, 0.5);
-}
 @media (max-width: 991px) {
   .slider {
     width: 80%;
@@ -304,6 +346,7 @@ p {
 /* Start Home */
 .slider .home {
   padding: 0;
+  overflow: hidden;
 }
 
 .slider .home .content {
@@ -325,6 +368,8 @@ p {
 .slider .home .text {
   flex-grow: 1;
   color: #fff;
+  overflow: auto;
+  height: 250px;
 }
 
 .slider .home .text p {
@@ -362,7 +407,7 @@ p {
   transition: all 0.5s ease;
 }
 .slider .home .text a:nth-child(1) span:nth-child(2) {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.7);
   color: #000;
   clip-path: polygon(100% 0, 100% 0%, 100% 99%, 0% 100%);
 }
@@ -370,7 +415,7 @@ p {
   clip-path: polygon(100% 0, 0 0, 0 100%, 100% 0);
 }
 .slider .home .text a:nth-child(2) span:nth-child(1) {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.7);
   color: #000;
   z-index: 1;
   clip-path: polygon(100% 0, 0 0, 0 100%, 100% 0);
@@ -434,21 +479,65 @@ p {
 }
 .slider .about .skills {
   margin-top: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  position: relative;
 }
-.slider .about .skills::before {
-  content: "";
+.slider .slide-skills {
   position: absolute;
-  bottom: 0;
-  right: 50%;
-  width: 1px;
-  height: 100%;
-  background-color: rgb(255 255 255 / 81%);
+  width: 100%;
+  height: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 30px 0;
 }
-.slider .about .skills > div:not(:first-child) {
+.slider .slide-skills .slide-skcontainer {
+  width: auto;
+  height: 100%;
+  cursor: pointer;
+  animation: 10s animate infinite linear;
+  display: inline-block;
+  transform: translateX(100%);
+}
+
+.slider .slide-skills .slide-skcontainer > div {
+  width: 200px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  color: #000;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.5s linear;
+  margin-right: 19px;
+  border-radius: 10px;
+}
+.slider .slide-skills .slide-skcontainer > div:hover {
+  scale: 1.1;
+  background: #5e72ff;
+  color: #fff;
+}
+.slider .slide-skills:hover .slide-skcontainer {
+  animation-play-state: paused;
+}
+.slider .slide-skills ion-icon {
+  font-size: 3em;
+}
+.slider .slide-skills span {
+  font-size: 20px;
+}
+.slider .slide-skills img {
+  width: 50px;
+  height: auto !important;
+}
+@keyframes animate {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+/*.slider .about .skills > div:not(:first-child) {
   width: 48%;
 }
 .slider .about .skills span {
@@ -481,14 +570,15 @@ p {
   position: absolute;
   color: #fff;
   top: -110%;
-  right: 0;
-}
+  right: 0; 
+} */
 .slider .about .img {
   position: absolute;
-  right: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: 500px;
   z-index: -1;
-  text-align: end;
 }
 .slider .about img {
   height: 100%;
@@ -503,7 +593,7 @@ p {
   .slider .about .skills {
     flex-direction: column;
   }
-
+  /*
   .slider .about .skills > div {
     width: 100% !important;
     text-align: start;
@@ -513,7 +603,7 @@ p {
   }
   .slider .about .skills .progress::after {
     left: var(--prog);
-  }
+  } */
 }
 /* End About */
 
@@ -589,7 +679,14 @@ p {
   width: 50%;
   color: #fff;
 }
-.slider .contact .form > div {
+.slider .contact .text {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.slider .contact .main-title {
+  margin: 0 auto 20px;
+}
+.slider .contact .form > div:not(:first-child) {
   position: relative;
   height: 40px;
   width: 100%;
@@ -630,7 +727,8 @@ p {
   color: #fff;
   border-left: 1px solid #fff;
   background: #000;
-  left: 60%;
+  left: inherit;
+  right: 25px;
 }
 .slider .contact .textarea {
   height: auto !important;
@@ -697,19 +795,23 @@ p {
   .slider .contact .form {
     width: 100%;
   }
-  .slider .contact input:focus + label,
-  .slider .contact input:valid + label,
-  .slider .contact textarea:focus + label,
-  .slider .contact textarea:valid + label {
-    left: 70%;
-  }
 }
-@media (max-width: 500px) {
-  .slider .contact input:focus + label,
-  .slider .contact input:valid + label,
-  .slider .contact textarea:focus + label,
-  .slider .contact textarea:valid + label {
-    left: 57%;
-  }
-}
+
 /* End Contact */
+
+/* Start Footer */
+footer {
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  text-transform: capitalize;
+  letter-spacing: 3px;
+  font-weight: 300;
+  padding: 25px 0;
+}
+footer a {
+  color: #5e72ff;
+}
+/* End Footer */

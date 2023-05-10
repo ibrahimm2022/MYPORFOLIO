@@ -44,3 +44,12 @@ function check() {
     link.classList.remove("active");
   });
 }
+
+// Slide Skills
+let slidecont = document.querySelector(".slide-skcontainer").innerHTML,
+  slideSkills = document.querySelector(".slide-skills");
+
+let div = document.createElement("div");
+div.className = "slide-skcontainer";
+div.innerHTML = slidecont;
+slideSkills.append(div);
