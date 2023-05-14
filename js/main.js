@@ -46,10 +46,23 @@ function check() {
 }
 
 // Slide Skills
-let slidecont = document.querySelector(".slide-skcontainer").innerHTML,
+let slidecont = document.querySelector(".slide-skcontainer"),
   slideSkills = document.querySelector(".slide-skills");
 
 let div = document.createElement("div");
 div.className = "slide-skcontainer";
-div.innerHTML = slidecont;
+div.innerHTML = slidecont.innerHTML;
 slideSkills.append(div);
+
+let slideAnimate = document.querySelectorAll(".slide-skcontainer");
+
+slideAnimate.forEach((slide) => {
+  slide.style.animation = "10s animate infinite linear";
+
+  slideSkills.onmouseenter = (e) => {
+    slideAnimate.forEach((s) => (s.style.animationPlayState = " paused"));
+  };
+  slideSkills.onmouseleave = (e) => {
+    slideAnimate.forEach((s) => (s.style.animationPlayState = "running"));
+  };
+});
